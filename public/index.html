@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lotte Løbner</title>
+    <meta name="description" content="En præsentations-side om Lotte Løbner — matematik-økonom, mor og Nordic Race-finisher fra Aarhus." />
+
+    <!-- Set theme before paint to avoid a flash of the wrong mode -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme = saved || (prefersDark ? "dark" : "light");
+          document.documentElement.dataset.theme = theme;
+        } catch (e) {
+          document.documentElement.dataset.theme = "light";
+        }
+      })();
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --font-serif: "Fraunces", Georgia, "Times New Roman", serif;
+        --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, Arial, sans-serif;
+
+        --bg-grad-from: #fef7fb;
+        --bg-grad-to: #eef7ff;
+        --surface: #ffffff;
+        --surface-soft: #faf7fb;
+        --text: #1f2937;
+        --text-soft: #5b6473;
+        --accent: #c2557a;
+        --accent-soft: #e9b9cb;
+        --border: rgba(31, 41, 55, 0.08);
+        --shadow: 0 14px 40px rgba(15, 23, 42, 0.12);
+        --shadow-soft: 0 6px 20px rgba(15, 23, 42, 0.08);
+      }
+
+      html[data-theme="dark"] {
+        --bg-grad-from: #1b1722;
+        --bg-grad-to: #141b27;
+        --surface: #211c2b;
+        --surface-soft: #2a2435;
+        --text: #ece8f1;
+        --text-soft: #a9a2b6;
+        --accent: #e98aac;
+        --accent-soft: #6a3c50;
+        --border: rgba(255, 255, 255, 0.1);
+        --shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+        --shadow-soft: 0 6px 20px rgba(0, 0, 0, 0.35);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: var(--font-sans);
+        color: var(--text);
+        background: linear-gradient(135deg, var(--bg-grad-from), var(--bg-grad-to));
+        background-attachment: fixed;
+        line-height: 1.6;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+
+      .wrap {
+        width: min(720px, 92vw);
+        margin: 0 auto;
+        padding: clamp(2.5rem, 6vw, 5rem) 0 3rem;
+      }
+
+      h1,
+      h2 {
+        font-family: var(--font-serif);
+        font-weight: 600;
+        line-height: 1.1;
+        margin: 0;
+      }
+
+      /* Theme toggle */
+      .theme-toggle {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 10;
+        width: 2.75rem;
+        height: 2.75rem;
+        border-radius: 50%;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        box-shadow: var(--shadow-soft);
+        cursor: pointer;
+        font-size: 1.2rem;
+        line-height: 1;
+        display: grid;
+        place-items: center;
+        transition: transform 0.2s ease, background 0.3s ease;
+      }
+      .theme-toggle:hover {
+        transform: scale(1.08);
+      }
+      .theme-toggle .icon-sun {
+        display: none;
+      }
+      html[data-theme="dark"] .theme-toggle .icon-moon {
+        display: none;
+      }
+      html[data-theme="dark"] .theme-toggle .icon-sun {
+        display: inline;
+      }
+
+      /* Hero */
+      .hero {
+        text-align: center;
+        padding: 1rem 0 2.5rem;
+      }
+      .avatar {
+        width: 132px;
+        height: 132px;
+        margin: 0 auto 1.5rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-family: var(--font-serif);
+        font-size: 2.75rem;
+        font-weight: 600;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+        user-select: none;
+      }
+      .avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 8vw, 3.75rem);
+      }
+      .hero .tagline {
+        margin: 0.75rem auto 0;
+        max-width: 28ch;
+        color: var(--text-soft);
+        font-size: 1.1rem;
+      }
+
+      /* Cards / sections */
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: clamp(1.5rem, 4vw, 2.25rem);
+        box-shadow: var(--shadow);
+        margin-top: 1.5rem;
+        transition: background 0.3s ease, border-color 0.3s ease;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+        font-weight: 600;
+        color: var(--accent);
+        margin: 0 0 0.5rem;
+      }
+      .card h2 {
+        font-size: 1.6rem;
+        margin-bottom: 0.85rem;
+      }
+      .card p {
+        margin: 0 0 1rem;
+      }
+      .card p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* Highlights grid */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-top: 1.25rem;
+      }
+      .tile {
+        background: var(--surface-soft);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1.25rem;
+      }
+      .tile .emoji {
+        font-size: 1.75rem;
+        line-height: 1;
+      }
+      .tile h3 {
+        font-family: var(--font-serif);
+        font-size: 1.15rem;
+        margin: 0.6rem 0 0.25rem;
+      }
+      .tile p {
+        margin: 0;
+        color: var(--text-soft);
+        font-size: 0.95rem;
+      }
+
+      /* Contact */
+      .contact {
+        text-align: center;
+      }
+      .links {
+        display: flex;
+        justify-content: center;
+        gap: 0.9rem;
+        margin-top: 1.25rem;
+        flex-wrap: wrap;
+      }
+      .links a {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+        box-shadow: var(--shadow-soft);
+        transition: transform 0.2s ease, filter 0.2s ease;
+      }
+      .links a:hover {
+        transform: translateY(-3px);
+        filter: brightness(1.05);
+      }
+      .links svg {
+        width: 1.35rem;
+        height: 1.35rem;
+        fill: currentColor;
+      }
+
+      footer {
+        text-align: center;
+        color: var(--text-soft);
+        font-size: 0.85rem;
+        margin-top: 2.5rem;
+      }
+
+      /* Scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        * {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" type="button" aria-label="Skift mellem lyst og mørkt tema">
+      <span class="icon-moon" aria-hidden="true">🌙</span>
+      <span class="icon-sun" aria-hidden="true">☀️</span>
+    </button>
+
+    <main class="wrap">
+      <header class="hero reveal">
+        <!-- Swap the monogram for a photo later: <div class="avatar"><img src="img/lotte.jpg" alt="Lotte Løbner" /></div> -->
+        <div class="avatar" aria-hidden="true">LL</div>
+        <h1>Lotte Løbner</h1>
+        <p class="tagline">Matematik-økonom, mor og Nordic Race-finisher fra Aarhus.</p>
+      </header>
+
+      <section class="card reveal" aria-labelledby="om-mig">
+        <p class="eyebrow">Om mig</p>
+        <h2 id="om-mig">Lidt om Lotte</h2>
+        <p>
+          Lotte er født og opvokset i Vorbasse, og siden faldt hun for Aarhus, hvor hun
+          læste til matematik-økonom på universitetet fra 2006 til 2012.
+        </p>
+        <p>
+          I dag bor hun i Aarhus med sin mand, Søren Løbner, og deres to piger, Ella og
+          Nora. Når hverdagen tillader det, finder hun energien frem — senest ved at
+          gennemføre Nordic Race i Aarhus.
+        </p>
+      </section>
+
+      <section class="card reveal" aria-labelledby="hojdepunkter">
+        <p class="eyebrow">Højdepunkter</p>
+        <h2 id="hojdepunkter">Et par ting, der tæller</h2>
+        <div class="grid">
+          <div class="tile">
+            <div class="emoji" aria-hidden="true">🏃</div>
+            <h3>Nordic Race</h3>
+            <p>Netop gennemført i Aarhus.</p>
+          </div>
+          <div class="tile">
+            <div class="emoji" aria-hidden="true">🎓</div>
+            <h3>Matematik-økonom</h3>
+            <p>Aarhus Universitet, 2006–2012.</p>
+          </div>
+          <div class="tile">
+            <div class="emoji" aria-hidden="true">👩‍👧‍👧</div>
+            <h3>Mor til to</h3>
+            <p>Ella og Nora.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card contact reveal" aria-labelledby="kontakt">
+        <p class="eyebrow">Kontakt</p>
+        <h2 id="kontakt">Find mig her</h2>
+        <p>Sig endelig hej — links opdateres snart.</p>
+        <div class="links">
+          <a href="#" aria-label="Send en e-mail til Lotte">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5v2Z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Lotte på LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05 4.02 0 4.76 2.65 4.76 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.07 1.4-2.07 2.85V21H9V9Z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Lotte på Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.2c3.2 0 3.6 0 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s0 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58 0-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s0-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5.01-4.74.07-.9.04-1.38.19-1.7.32-.43.16-.74.36-1.06.68-.32.32-.52.63-.68 1.06-.13.32-.28.8-.32 1.7C3.21 9.05 3.2 9.4 3.2 12s.01 2.95.07 4.19c.04.9.19 1.38.32 1.7.16.43.36.74.68 1.06.32.32.63.52 1.06.68.32.13.8.28 1.7.32 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c.9-.04 1.38-.19 1.7-.32.43-.16.74-.36 1.06-.68.32-.32.52-.63.68-1.06.13-.32.28-.8.32-1.7.06-1.24.07-1.59.07-4.19s-.01-2.95-.07-4.19c-.04-.9-.19-1.38-.32-1.7a2.85 2.85 0 0 0-.68-1.06 2.85 2.85 0 0 0-1.06-.68c-.32-.13-.8-.28-1.7-.32C15.5 4.01 15.15 4 12 4Zm0 3.06A4.94 4.94 0 1 1 12 16.94 4.94 4.94 0 0 1 12 7.06Zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28Zm5.14-3.24a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3Z" />
+            </svg>
+          </a>
+          <a href="#" aria-label="Lotte på Facebook">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.87.24-1.46 1.49-1.46H17V4.04c-.28-.04-1.23-.12-2.34-.12-2.31 0-3.9 1.41-3.9 4v2.23H8v3h2.76v8h2.74Z" />
+            </svg>
+          </a>
+        </div>
+      </section>
+
+      <footer>© 2026 Lotte Løbner</footer>
+    </main>
+
+    <script>
+      // Theme toggle
+      var toggle = document.querySelector(".theme-toggle");
+      toggle.addEventListener("click", function () {
+        var next = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try {
+          localStorage.setItem("theme", next);
+        } catch (e) {}
+      });
+
+      // Scroll reveal
+      var reveals = document.querySelectorAll(".reveal");
+      if ("IntersectionObserver" in window) {
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        reveals.forEach(function (el) {
+          io.observe(el);
+        });
+      } else {
+        reveals.forEach(function (el) {
+          el.classList.add("is-visible");
+        });
+      }
+    </script>
+  </body>
+</html>
